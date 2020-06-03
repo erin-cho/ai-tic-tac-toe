@@ -4,7 +4,6 @@
 
 int main()
 {
-    tictactoe game;
 
     std::cout << "Welcome to Tic-Tac-Toe!\n" << std::endl;
     std::cout << " 1 | 2 | 3 " << "\n" << "---+---+---" << "\n"
@@ -13,10 +12,11 @@ int main()
 
     std::cout << "\nChoose the level of difficulty: easy or hard. (E/H)" << std::endl;
 
-    game.acceptDiff();
+    tictactoe game;
 
     std::cout << "\nChoose a number to start the game." << std::endl;
 
     game.playGame();
+
     return 0;
 }

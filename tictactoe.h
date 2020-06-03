@@ -24,6 +24,10 @@ private:
     //post: board consists of spaces
     void fillBoard();
 
+    //acceptDiff
+    //accepts the level of difficulty from player's input
+    void acceptDiff();
+
     //acceptValue
     //post: accepts a value from player
     size_t acceptValue();
@@ -32,18 +36,6 @@ private:
     //pre: row and col are valid
     //post: returns true if spot is empty
     bool isEmpty(size_t row, size_t col);
-
-    //takenByPlayer
-    //pre: row and col are valid
-    //post: returns true if spot is taken by player's piece
-    //makes it easier to set the player's piece
-    bool takenByPlayer(size_t row, size_t col);
-
-    //takenByCPU
-    //pre: row and col are valid
-    //post: returns true if spot is taken by CPU's piece
-    //makes it easier to set the CPU's piece
-    bool takenByCPU(size_t row, size_t col);
 
     //setPlayer
     //pre: row and col are valid
@@ -58,12 +50,33 @@ private:
     void setCPU(size_t row, size_t col);
 
     //playerGo
-    //post: player's turn
+    //player's turn, places player's piece in specified spot
     void playerGo();
 
     //CPUGo
-    //post: computer's turn
+    //computer's turn, places piece in this order:
+    // where there's a win (two CPU pieces in a line),
+    // where there's a loss (two player's pieces in a line), or
+    // from first spot to last spot
     void CPUGo();
+
+    //checkTwoHor
+    //checks if can win/lose horizontally (2 pieces in a line)
+    void checkTwoHor(bool &turnTaken, const std::string &piece);
+
+    //checkTwoVer
+    //checks if can win/lose vertically (2 pieces in a line)
+    void checkTwoVer(bool &turnTaken, const std::string &piece);
+
+    //checkTwoDiag1
+    //checks if can win/lose diagonally
+    // (2 pieces in a line, from top left to bottom right)
+    void checkTwoDiag1(bool &turnTaken, const std::string &piece);
+
+    //checkTwoDiag2
+    //checks if can win/lose diagonally
+    // (2 pieces in a line, from top right to bottom left)
+    void checkTwoDiag2(bool &turnTaken, const std::string &piece);
 
     //displayBoard
     //post: displays current board
@@ -89,9 +102,6 @@ private:
 public:
     //constructor
     tictactoe();
-
-    //acceptDiff
-    void acceptDiff();
 
     //playGame
     //public function to start game
